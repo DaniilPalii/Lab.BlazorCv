@@ -240,7 +240,7 @@ public class MockCvService : ICvService
         )
 	];
 
-    public static Project[] GetPersonalProjects() =>
+    private static Project[] GetPersonalProjects() =>
     [
 	    new Project(
             Title: "Goals and Tasks",
