@@ -1,6 +1,6 @@
 namespace BlazorCv.Components.Pages.Counter;
 
-public partial class Counter
+public partial class CounterPage
 {
 	private int currentCount = 0;
 

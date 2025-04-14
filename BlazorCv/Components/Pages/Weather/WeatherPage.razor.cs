@@ -1,6 +1,6 @@
 namespace BlazorCv.Components.Pages.Weather;
 
-public partial class Weather
+public partial class WeatherPage
 {
 	private WeatherForecast[]? forecasts;
 

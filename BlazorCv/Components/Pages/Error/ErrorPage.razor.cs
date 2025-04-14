@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorCv.Components.Pages.Error;
 
-public partial class Error
+public partial class ErrorPage
 {
 	[CascadingParameter] private HttpContext? HttpContext { get; set; }
 	private string? RequestId { get; set; }
