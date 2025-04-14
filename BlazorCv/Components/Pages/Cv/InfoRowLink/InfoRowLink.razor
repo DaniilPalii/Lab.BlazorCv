@@ -1,0 +1,15 @@
+@if (Value is not null)
+{
+	<p>
+		<strong>@Label:</strong>
+
+		@if (IsEmail)
+		{
+			<a href="mailto:@Value">@Value</a>
+		}
+		else
+		{
+			<a href="@Value" target="_blank">@Value</a>
+		}
+	</p>
+}

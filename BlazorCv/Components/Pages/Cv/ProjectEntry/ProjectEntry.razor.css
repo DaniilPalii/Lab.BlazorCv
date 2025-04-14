@@ -1,0 +1,8 @@
+.project-entry {
+	margin-bottom: 1.5rem;
+	border-bottom: 1px gray solid;
+
+	&:last-child {
+		border-bottom: none;
+	}
+}

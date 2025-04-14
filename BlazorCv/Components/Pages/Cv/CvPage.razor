@@ -1,10 +1,14 @@
 ﻿@page "/cv"
+@using BlazorCv.Components.Shared.Loader
+@using BlazorCv.Components.Pages.Cv.InfoRow
+@using BlazorCv.Components.Pages.Cv.InfoRowLink
+@using BlazorCv.Components.Pages.Cv.ProjectEntry
 
 <PageTitle>CV</PageTitle>
 
 @if (cv is null)
 {
-	<p>Loading...</p>
+	<Loader/>
 }
 else
 {
@@ -13,45 +17,12 @@ else
 
 		<section>
 			<h2>Personal Info</h2>
-
-			<p>
-				<strong>Name:</strong>
-				@cv.Name
-			</p>
-
-			<p>
-				<strong>Address:</strong>
-				@cv.Address
-			</p>
-
-			@if (cv.Phone is not null)
-			{
-				<p>
-					<strong>Phone:</strong>
-					@cv.Phone
-				</p>
-			}
-
-			<p>
-				<strong>Email:</strong>
-				<a href="mailto:@cv.Email">@cv.Email</a>
-			</p>
-
-			@if (cv.GithubLink is not null)
-			{
-				<p>
-					<strong>GitHub:</strong>
-					<a href="@cv.GithubLink" target="_blank">@cv.GithubLink</a>
-				</p>
-			}
-
-			@if (cv.LinkedInLink is not null)
-			{
-				<p>
-					<strong>LinkedIn:</strong>
-					<a href="@cv.LinkedInLink" target="_blank">@cv.LinkedInLink</a>
-				</p>
-			}
+			<InfoRow Label="Name" Value="@cv.Name" />
+			<InfoRow Label="Address" Value="@cv.Address" />
+			<InfoRow Label="Phone" Value="@cv.Phone" />
+			<InfoRowLink Label="Email" Value="@cv.Email" IsEmail></InfoRowLink>
+			<InfoRowLink Label="GitHub" Value="@cv.GithubLink"></InfoRowLink>
+			<InfoRowLink Label="LinkedIn" Value="@cv.LinkedInLink"></InfoRowLink>
 		</section>
 
 		<section>
@@ -72,9 +43,9 @@ else
 		<section>
 			<h2>Languages</h2>
 			<ul>
-				@foreach (var lang in cv.Languages)
+				@foreach (var language in cv.Languages)
 				{
-					<li>@lang.Title – @lang.KnowledgeLevel</li>
+					<li>@language.Title – @language.KnowledgeLevel</li>
 				}
 			</ul>
 		</section>
@@ -89,9 +60,9 @@ else
 						<strong>@employment.Position at @employment.Company</strong>
 					</p>
 					<ul>
-						@foreach (var resp in employment.Responsibilities)
+						@foreach (var responsibility in employment.Responsibilities)
 						{
-							<li>@resp</li>
+							<li>@responsibility</li>
 						}
 					</ul>
 				</div>
@@ -114,14 +85,7 @@ else
 			<h2>Commercial Projects</h2>
 			@foreach (var project in cv.CommercialProjects)
 			{
-				<div class="project-entry">
-					<p>
-						@project.StartDate.ToString("yyyy-MM") – @(project.EndDate?.ToString("yyyy-MM") ?? "Present"):
-						<strong>@project.Title</strong>
-					</p>
-					<p>@project.Description</p>
-					<p>Technologies: @string.Join(", ", project.TechnologiesUsed)</p>
-				</div>
+				<ProjectEntry Project="@project" />
 			}
 		</section>
 
@@ -129,14 +93,7 @@ else
 			<h2>Personal Projects</h2>
 			@foreach (var project in cv.PersonalProjects)
 			{
-				<div class="project-entry">
-					<p>
-						@project.StartDate.ToString("yyyy-MM") – @(project.EndDate?.ToString("yyyy-MM") ?? "Present"):
-						<strong>@project.Title</strong>
-					</p>
-					<p>@project.Description</p>
-					<p>Technologies: @string.Join(", ", project.TechnologiesUsed)</p>
-				</div>
+				<ProjectEntry Project="@project" />
 			}
 		</section>
 

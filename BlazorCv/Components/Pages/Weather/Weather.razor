@@ -1,4 +1,5 @@
 ﻿@page "/weather"
+@using BlazorCv.Components.Shared.Loader
 
 <PageTitle>Weather</PageTitle>
 
@@ -8,9 +9,7 @@
 
 @if (forecasts == null)
 {
-	<p>
-		<em>Loading...</em>
-	</p>
+	<Loader/>
 }
 else
 {

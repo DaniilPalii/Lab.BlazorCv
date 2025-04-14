@@ -14,8 +14,7 @@ h2 {
 	padding-bottom: 1rem;
 }
 
-.job-entry,
-.project-entry {
+.job-entry {
 	margin-bottom: 1.5rem;
 	border-bottom: 1px gray solid;
 
