@@ -1,0 +1,147 @@
+﻿@page "/cv"
+
+<PageTitle>CV</PageTitle>
+
+@if (cv is null)
+{
+	<p>Loading...</p>
+}
+else
+{
+	<div class="cv-container">
+		<h1>@cv.Title</h1>
+
+		<section>
+			<h2>Personal Info</h2>
+
+			<p>
+				<strong>Name:</strong>
+				@cv.Name
+			</p>
+
+			<p>
+				<strong>Address:</strong>
+				@cv.Address
+			</p>
+
+			@if (cv.Phone is not null)
+			{
+				<p>
+					<strong>Phone:</strong>
+					@cv.Phone
+				</p>
+			}
+
+			<p>
+				<strong>Email:</strong>
+				<a href="mailto:@cv.Email">@cv.Email</a>
+			</p>
+
+			@if (cv.GithubLink is not null)
+			{
+				<p>
+					<strong>GitHub:</strong>
+					<a href="@cv.GithubLink" target="_blank">@cv.GithubLink</a>
+				</p>
+			}
+
+			@if (cv.LinkedInLink is not null)
+			{
+				<p>
+					<strong>LinkedIn:</strong>
+					<a href="@cv.LinkedInLink" target="_blank">@cv.LinkedInLink</a>
+				</p>
+			}
+		</section>
+
+		<section>
+			<h2>Summary</h2>
+			<p>@cv.Summary</p>
+		</section>
+
+		<section>
+			<h2>Skills</h2>
+			<ul>
+				@foreach (var skill in cv.Skills)
+				{
+					<li>@skill</li>
+				}
+			</ul>
+		</section>
+
+		<section>
+			<h2>Languages</h2>
+			<ul>
+				@foreach (var lang in cv.Languages)
+				{
+					<li>@lang.Title – @lang.KnowledgeLevel</li>
+				}
+			</ul>
+		</section>
+
+		<section>
+			<h2>Employment History</h2>
+			@foreach (var employment in cv.EmploymentHistory)
+			{
+				<div class="job-entry">
+					<p>
+						@employment.StartDate.ToString("yyyy-MM") – @(employment.EndDate?.ToString("yyyy-MM") ?? "Present"):
+						<strong>@employment.Position at @employment.Company</strong>
+					</p>
+					<ul>
+						@foreach (var resp in employment.Responsibilities)
+						{
+							<li>@resp</li>
+						}
+					</ul>
+				</div>
+			}
+		</section>
+
+		<section>
+			<h2>Education</h2>
+			@foreach (var education in cv.EducationHistory)
+			{
+				<p>
+					@education.StartDate.Year – @(education.EndDate?.Year.ToString() ?? "Present"):
+					<strong>@education.Degree in @education.FieldOfStudy</strong>
+					at @education.Institution
+				</p>
+			}
+		</section>
+
+		<section>
+			<h2>Commercial Projects</h2>
+			@foreach (var project in cv.CommercialProjects)
+			{
+				<div class="project-entry">
+					<p>
+						@project.StartDate.ToString("yyyy-MM") – @(project.EndDate?.ToString("yyyy-MM") ?? "Present"):
+						<strong>@project.Title</strong>
+					</p>
+					<p>@project.Description</p>
+					<p>Technologies: @string.Join(", ", project.TechnologiesUsed)</p>
+				</div>
+			}
+		</section>
+
+		<section>
+			<h2>Personal Projects</h2>
+			@foreach (var project in cv.PersonalProjects)
+			{
+				<div class="project-entry">
+					<p>
+						@project.StartDate.ToString("yyyy-MM") – @(project.EndDate?.ToString("yyyy-MM") ?? "Present"):
+						<strong>@project.Title</strong>
+					</p>
+					<p>@project.Description</p>
+					<p>Technologies: @string.Join(", ", project.TechnologiesUsed)</p>
+				</div>
+			}
+		</section>
+
+		<section class="clause">
+			<p>@cv.Clause</p>
+		</section>
+	</div>
+}

@@ -1,0 +1,31 @@
+.cv-container {
+	max-width: 900px;
+	margin: auto;
+	padding: 2rem;
+}
+
+section {
+	margin-top: 2rem;
+}
+
+h1,
+h2 {
+	color: #2c3e50;
+	padding-bottom: 1rem;
+}
+
+.job-entry,
+.project-entry {
+	margin-bottom: 1.5rem;
+	border-bottom: 1px gray solid;
+
+	&:last-child {
+		border-bottom: none;
+	}
+}
+
+.clause {
+	font-size: 0.85rem;
+	color: gray;
+	margin-top: 3rem;
+}
