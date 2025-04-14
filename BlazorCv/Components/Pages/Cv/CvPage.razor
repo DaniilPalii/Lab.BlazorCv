@@ -3,6 +3,7 @@
 @using BlazorCv.Components.Pages.Cv.InfoRow
 @using BlazorCv.Components.Pages.Cv.InfoRowLink
 @using BlazorCv.Components.Pages.Cv.ProjectEntry
+@using BlazorCv.Components.Pages.Cv.DateRange
 
 <PageTitle>CV</PageTitle>
 
@@ -56,7 +57,7 @@ else
 			{
 				<div class="job-entry">
 					<p>
-						@employment.StartDate.ToString("yyyy-MM") – @(employment.EndDate?.ToString("yyyy-MM") ?? "Present"):
+						<DateRange StartDate="employment.StartDate" EndDate="employment.EndDate"/>:
 						<strong>@employment.Position at @employment.Company</strong>
 					</p>
 					<ul>
@@ -74,7 +75,7 @@ else
 			@foreach (var education in cv.EducationHistory)
 			{
 				<p>
-					@education.StartDate.Year – @(education.EndDate?.Year.ToString() ?? "Present"):
+					<DateRange StartDate="education.StartDate" EndDate="education.EndDate" Format="yyyy"/>:
 					<strong>@education.Degree in @education.FieldOfStudy</strong>
 					at @education.Institution
 				</p>

@@ -1,6 +1,8 @@
+@using BlazorCv.Components.Pages.Cv.DateRange
+
 <div class="project-entry">
 	<p>
-		@Project.StartDate.ToString("yyyy-MM") – @(Project.EndDate?.ToString("yyyy-MM") ?? "Present"):
+		<DateRange StartDate="Project.StartDate" EndDate="Project.EndDate"/>:
 		<strong>@Project.Title</strong>
 	</p>
 	<p>@Project.Description</p>
